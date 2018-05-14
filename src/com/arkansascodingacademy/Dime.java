@@ -1,8 +1,9 @@
 package com.arkansascodingacademy;
 
+import javax.swing.*;
 import java.math.BigDecimal;
 
-public class Dime
+public class Dime implements ICurrency
 {
     private int year;
 
@@ -16,13 +17,21 @@ public class Dime
         return year;
     }
 
+    @Override
     public BigDecimal getFaceValue()
     {
         return new BigDecimal(".10");
     }
 
-    public BigDecimal getCollectibleValue( int year)
+    @Override
+    public BigDecimal getCollectibleValue()
     {
         return new BigDecimal(".10");
+    }
+
+    @Override
+    public String getName()
+    {
+        return "Dime";
     }
 }

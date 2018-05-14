@@ -1,5 +1,52 @@
 package com.arkansascodingacademy;
 
-public class Ten
+import java.math.BigDecimal;
+
+public class Ten implements ICurrency
 {
+    private int serialNumber = 0;
+    private int year = 0;
+
+    public Ten(int year, int serialNumber)
+    {
+        this.serialNumber = serialNumber;
+        this.year = year;
+    }
+
+    public int getYear()
+    {
+        return year;
+    }
+
+    public int getSerialNumber()
+    {
+        return serialNumber;
+    }
+
+    @Override
+    public BigDecimal getFaceValue()
+    {
+        return new BigDecimal("10");
+    }
+
+    @Override
+    public BigDecimal getCollectibleValue()
+    {
+        BigDecimal value = new BigDecimal(10);
+
+        if(serialNumber < 1000)
+        {
+            BigDecimal factor = new BigDecimal(10);
+            value = value.multiply(factor);
+        }
+
+        return value;
+    }
+
+    @Override
+    public String getName()
+    {
+        return "Ten";
+    }
+
 }

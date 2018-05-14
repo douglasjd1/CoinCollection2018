@@ -2,7 +2,7 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Nickel
+public class Nickel implements ICurrency
 {
     private int year;
 
@@ -16,12 +16,8 @@ public class Nickel
         return new BigDecimal(".05");
     }
 
-    public int getYear()
-    {
-        return year;
-    }
-
-    public BigDecimal getCollectibleValue(int year)
+    @Override
+    public BigDecimal getCollectibleValue()
     {
         BigDecimal value = new BigDecimal(.05);
 
@@ -32,5 +28,16 @@ public class Nickel
         }
 
         return value;
+    }
+
+    @Override
+    public String getName()
+    {
+        return "Nickel";
+    }
+
+    public int getYear()
+    {
+        return year;
     }
 }

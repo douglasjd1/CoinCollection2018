@@ -2,7 +2,7 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Penny
+public class Penny implements ICurrency
 {
     private int year;
 
@@ -16,13 +16,14 @@ public class Penny
         return year;
     }
 
-
+    @Override
     public BigDecimal getFaceValue()
     {
         return new BigDecimal(".01");
     }
 
-    public BigDecimal getCollectibleValue(int year)
+    @Override
+    public BigDecimal getCollectibleValue()
     {
         BigDecimal value = new BigDecimal(.01);
 
@@ -33,6 +34,12 @@ public class Penny
         }
 
         return value;
+    }
+
+    @Override
+    public String getName()
+    {
+        return "Penny";
     }
 
 }

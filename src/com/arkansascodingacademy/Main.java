@@ -15,7 +15,7 @@ public class Main
         final int nickelCount = 3;
         final int pennyCount = 2;
 
-        CoinCollection coinCollection = new CoinCollection(quarterCount, dimeCount, nickelCount, pennyCount);
+        CoinCollection coinCollection = new CoinCollection(new BigDecimal(999.99));
 
         System.out.println("Let's take a look at the value of your new coin collection.");
         System.out.println();
@@ -25,6 +25,7 @@ public class Main
 
         System.out.println();
         System.out.println("Let's add some more coins to your collection.");
+
 
         final int pennyYear1 = 1900;
         final int nickelYear1 = 1903;
@@ -54,6 +55,22 @@ public class Main
         System.out.println();
         System.out.println("Let's take a look at the value of your improved coin collection in more detail.");
         System.out.println();
+
+        System.out.println("One hundreds have total face value of " + coinCollection.getOneHundredsFaceValue());
+        System.out.println("One hundreds total collectible value of " + coinCollection.getOneHundredsCollectibleValue());
+
+        System.out.println("Twenties have total face value of " + coinCollection.getTwentiesFaceValue());
+        System.out.println("Twenties total collectible value of " + coinCollection.getTwentiesCollectibleValue());
+
+        System.out.println("Tens have total face value of " + coinCollection.getTensFaceValue());
+        System.out.println("Tens total collectible value of " + coinCollection.getTensCollectibleValue());
+
+        System.out.println("Fives have total face value of " + coinCollection.getFivesFaceValue());
+        System.out.println("Fives total collectible value of " + coinCollection.getFivesCollectibleValue());
+
+        System.out.println("Ones have total face value of " + coinCollection.getOnesFaceValue());
+        System.out.println("Ones total collectible value of " + coinCollection.getOnesCollectibleValue());
+
         System.out.println("Quarters have total face value of " + coinCollection.getQuartersFaceValue());
         System.out.println("Quarters have total collectible value of " + coinCollection.getQuartersCollectibleValue());
 
@@ -65,6 +82,9 @@ public class Main
 
         System.out.println("Pennies have total face value of " + coinCollection.getPenniesFaceValue());
         System.out.println("Pennies have total collectible value of " + coinCollection.getPenniesCollectibleValue());
+
+
+
     }
 }
 
