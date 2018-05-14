@@ -27,6 +27,41 @@ class CoinCollectionTest
     }
 
     @Test
+    void addOne()
+    {
+        coinCollection.addOne(2000, 1000);
+        coinCollection.addOne(2000, 1000);
+    }
+
+    @Test
+    void addFive()
+    {
+        coinCollection.addFive(1990, 1560);
+        coinCollection.addFive(1990, 150);
+    }
+
+    @Test
+    void addTen()
+    {
+        coinCollection.addTen(1977, 3340);
+        coinCollection.addTen(1977, 340);
+    }
+
+    @Test
+    void addTwenty()
+    {
+        coinCollection.addTwenty(2018, 1067);
+        coinCollection.addTwenty(2018, 106);
+    }
+
+    @Test
+    void addOneHundred()
+    {
+        coinCollection.addOneHundred(2001, 1067);
+        coinCollection.addOneHundred(2001, 67);
+    }
+
+    @Test
     void addPenny()
     {
         coinCollection.addPenny(1900);
@@ -68,8 +103,9 @@ class CoinCollectionTest
     {
         coinCollection.addPenny(1900);  //1.36
         coinCollection.addPenny(1940);  //0.16
+        coinCollection.setCurrentYear(2028);
 
-        assertEquals(new BigDecimal("1.54"), coinCollection.getPenniesCollectibleValue());
+        assertEquals(new BigDecimal("1.64"), coinCollection.getPenniesCollectibleValue());
     }
 
     @Test
@@ -79,7 +115,6 @@ class CoinCollectionTest
         coinCollection.addNickel(1993);
 
         assertEquals(new BigDecimal("0.25"), coinCollection.getNickelsFaceValue());
-
     }
 
     @Test
@@ -87,8 +122,9 @@ class CoinCollectionTest
     {
         coinCollection.addNickel(1903); //3.25
         coinCollection.addNickel(1993); //0.05
+        coinCollection.setCurrentYear(2028);
 
-        assertEquals(new BigDecimal("3.45"), coinCollection.getNickelsCollectibleValue());
+        assertEquals(new BigDecimal("3.55"), coinCollection.getNickelsCollectibleValue());
     }
 
     @Test
@@ -98,7 +134,6 @@ class CoinCollectionTest
         coinCollection.addDime(1978);
 
         assertEquals(new BigDecimal("0.70"), coinCollection.getDimesFaceValue());
-
     }
 
     @Test
@@ -106,8 +141,9 @@ class CoinCollectionTest
     {
         coinCollection.addDime(1905);
         coinCollection.addDime(1978);
+        coinCollection.setCurrentYear(2028);
 
-        assertEquals(new BigDecimal("0.70"), coinCollection.getDimesCollectibleValue());
+        assertEquals(new BigDecimal("0.80"), coinCollection.getDimesCollectibleValue());
     }
 
     @Test
@@ -117,7 +153,6 @@ class CoinCollectionTest
         coinCollection.addQuarter(2008);
 
         assertEquals(new BigDecimal("3.00"), coinCollection.getQuartersFaceValue());
-
     }
 
     @Test
@@ -125,8 +160,97 @@ class CoinCollectionTest
     {
         coinCollection.addQuarter(1908); //3.55
         coinCollection.addQuarter(2008); //0.25
+        coinCollection.setCurrentYear(2028);
 
-        assertEquals(new BigDecimal("6.30"), coinCollection.getQuartersCollectibleValue());
+        assertEquals(new BigDecimal("6.40"), coinCollection.getQuartersCollectibleValue());
+    }
+
+    @Test
+    void getOnesFaceValue()
+    {
+        coinCollection.addOne(1999,1000);
+        coinCollection.addOne(1987, 100);
+
+        assertEquals(new BigDecimal("2.00"), coinCollection.getOnesFaceValue());
+    }
+
+    @Test
+    void getFivesFaceValue()
+    {
+        coinCollection.addFive(1987, 4567);
+        coinCollection.addFive(1988, 100);
+
+        assertEquals(new BigDecimal("10.00"), coinCollection.getFivesFaceValue());
+    }
+
+    @Test
+    void getTensFaceValue()
+    {
+        coinCollection.addTen(1987, 4567);
+        coinCollection.addTen(1988, 458);
+
+        assertEquals(new BigDecimal("20.00"), coinCollection.getTensFaceValue());
+    }
+
+    @Test
+    void getTwentiesFaceValue()
+    {
+        coinCollection.addTwenty(1987, 4567);
+        coinCollection.addTwenty(1988, 458);
+
+        assertEquals(new BigDecimal("40.00"), coinCollection.getTwentiesFaceValue());
+    }
+    @Test
+    void getOneHundredsFaceValue()
+    {
+        coinCollection.addOneHundred(1987, 4567);
+        coinCollection.addOneHundred(1988, 458);
+
+        assertEquals(new BigDecimal("200.00"), coinCollection.getOneHundredsFaceValue());
+    }
+
+    @Test
+    void getOnesCollectibleValue()
+    {
+        coinCollection.addOne(1999,1039);
+        coinCollection.addOne(1987, 10);
+
+        assertEquals(new BigDecimal("11.00"), coinCollection.getOnesCollectibleValue());
+    }
+
+    @Test
+    void getFivesCollectibleValue()
+    {
+        coinCollection.addFive(1987, 4567);
+        coinCollection.addFive(1988, 100);
+
+        assertEquals(new BigDecimal("55.00"), coinCollection.getFivesCollectibleValue());
+    }
+
+    @Test
+    void getTensCollectibleValue()
+    {
+        coinCollection.addTen(1987, 4567);
+        coinCollection.addTen(1988, 458);
+
+        assertEquals(new BigDecimal("110.00"), coinCollection.getTensCollectibleValue());
+    }
+
+    @Test
+    void getTwentiesCollectibleValue()
+    {
+        coinCollection.addTwenty(1987, 4567);
+        coinCollection.addTwenty(1988, 458);
+
+        assertEquals(new BigDecimal("220.00"), coinCollection.getTwentiesCollectibleValue());
+    }
+    @Test
+    void getOneHundredsCollectibleValue()
+    {
+        coinCollection.addOneHundred(1987, 4567);
+        coinCollection.addOneHundred(1988, 458);
+
+        assertEquals(new BigDecimal("1100.00"), coinCollection.getOneHundredsCollectibleValue());
     }
 
     @Test
@@ -145,7 +269,6 @@ class CoinCollectionTest
         coinCollection.addQuarter(2008);
 
         assertEquals(new BigDecimal("3.99"), coinCollection.getFaceValue());
-
     }
 
     @Test

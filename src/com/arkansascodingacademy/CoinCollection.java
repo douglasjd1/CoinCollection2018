@@ -8,17 +8,18 @@ import java.util.Random;
 
 public class CoinCollection
 {
-    private List<Quarter> quarters = new ArrayList<>();
-    private List<Dime> dimes = new ArrayList<>();
-    private List<Nickel> nickels = new ArrayList<>();
-    private List<Penny> pennies = new ArrayList<>();
-    private List<One> ones = new ArrayList<>();
-    private List<Five> fives = new ArrayList<>();
-    private List<Ten> tens = new ArrayList<>();
-    private List<Twenty> twenties = new ArrayList<>();
-    private List<OneHundred> oneHundreds = new ArrayList<>();
+    public List<Quarter> quarters = new ArrayList<>();
+    public List<Dime> dimes = new ArrayList<>();
+    public List<Nickel> nickels = new ArrayList<>();
+    public List<Penny> pennies = new ArrayList<>();
+    public List<One> ones = new ArrayList<>();
+    public List<Five> fives = new ArrayList<>();
+    public List<Ten> tens = new ArrayList<>();
+    public List<Twenty> twenties = new ArrayList<>();
+    public List<OneHundred> oneHundreds = new ArrayList<>();
     Exception e = new Exception();
     Random random = new Random();
+    int currentYear = 2018;
 
     public CoinCollection(int quarterCount, int dimeCount, int nickelCount, int pennyCount)
     {
@@ -128,6 +129,11 @@ public class CoinCollection
             pennies.add(penny);
         }
         amount = amount.subtract(new BigDecimal(numPennies * 01)).setScale(0, RoundingMode.HALF_UP);
+    }
+
+    public void setCurrentYear(int currentYear)
+    {
+        this.currentYear = currentYear;
     }
 
     public void addQuarter(int year)
@@ -308,22 +314,46 @@ public class CoinCollection
     }
     public BigDecimal getQuartersCollectibleValue()
     {
-        return getUnitCollectibleValue(quarters);
+        BigDecimal value = new BigDecimal("0");
+
+        for(int year = 2018; year < currentYear; year++)
+        {
+            value = value.add(new BigDecimal(".01"));
+        }
+        return (getUnitCollectibleValue(quarters).add(value)).setScale(2,RoundingMode.HALF_UP);
     }
 
     public BigDecimal getDimesCollectibleValue()
     {
-        return getUnitCollectibleValue(dimes);
+        BigDecimal value = new BigDecimal("0");
+
+        for(int year = 2018; year < currentYear; year++)
+        {
+            value = value.add(new BigDecimal(".01"));
+        }
+        return (getUnitCollectibleValue(dimes).add(value)).setScale(2,RoundingMode.HALF_UP);
     }
 
     public BigDecimal getNickelsCollectibleValue()
     {
-        return getUnitCollectibleValue(nickels);
+        BigDecimal value = new BigDecimal("0");
+
+        for(int year = 2018; year < currentYear; year++)
+        {
+            value = value.add(new BigDecimal(".01"));
+        }
+        return (getUnitCollectibleValue(nickels).add(value)).setScale(2,RoundingMode.HALF_UP);
     }
 
     public BigDecimal getPenniesCollectibleValue()
     {
-        return getUnitCollectibleValue(pennies);
+        BigDecimal value = new BigDecimal("0");
+
+        for(int year = 2018; year < currentYear; year++)
+        {
+            value = value.add(new BigDecimal(".01"));
+        }
+        return (getUnitCollectibleValue(pennies).add(value)).setScale(2,RoundingMode.HALF_UP);
     }
 
     public BigDecimal getOnesCollectibleValue()
@@ -379,7 +409,7 @@ public class CoinCollection
         return value;
     }
 
-    private BigDecimal getUnitFaceValue(List<? extends ICurrency> units)
+    public BigDecimal getUnitFaceValue(List<? extends ICurrency> units)
     {
         BigDecimal faceValue = new BigDecimal("0");
 
@@ -391,13 +421,13 @@ public class CoinCollection
         return faceValue.setScale(2,RoundingMode.HALF_UP);
     }
 
-    private BigDecimal getUnitCollectibleValue(List<? extends ICurrency> units)
+    public BigDecimal getUnitCollectibleValue(List<? extends ICurrency> units)
     {
         BigDecimal collectibleValue = new BigDecimal("0");
 
         for(ICurrency unit : units)
         {
-            collectibleValue = collectibleValue.add(unit.getFaceValue());
+            collectibleValue = collectibleValue.add(unit.getCollectibleValue());
         }
 
         return collectibleValue.setScale(2,RoundingMode.HALF_UP);
